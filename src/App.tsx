@@ -10,7 +10,7 @@ import { supabase } from "./lib/supabase";
 
 function App() {
   const [votes, setVotes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(songData.songs.map((song) => [song.rank, 0]))
+    Object.fromEntries(songData.songs.map((song) => [song.rank, 0])),
   );
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -28,7 +28,7 @@ function App() {
       }
 
       const voteMap = Object.fromEntries(
-        data.map((vote) => [vote.song_rank, vote.count])
+        data.map((vote) => [vote.song_rank, vote.count]),
       );
 
       setVotes((prev) => ({
@@ -55,7 +55,7 @@ function App() {
             ...prev,
             [payload.new.song_rank]: payload.new.count,
           }));
-        }
+        },
       )
       .subscribe();
 
@@ -112,12 +112,12 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-blue-950 to-purple-950 text-white flex flex-col relative">
+    <div className="relative flex min-h-screen flex-col bg-gradient-to-b from-gray-950 via-blue-950 to-purple-950 text-white">
       <BackgroundPattern />
 
-      <div className="container mx-auto px-4 py-8 max-w-[1900px] flex-grow relative z-10">
+      <div className="container relative z-10 mx-auto max-w-[1900px] flex-grow px-4 py-8">
         <MyHeader />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {songData.songs.map((song) => (
             <SongCard
               key={song.rank}

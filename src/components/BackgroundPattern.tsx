@@ -1,6 +1,6 @@
 export const BackgroundPattern = () => {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none opacity-[0.2] -scale-[3]">
+    <div className="pointer-events-none fixed inset-0 z-0 -scale-[3] overflow-hidden opacity-[0.2]">
       {/* <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern

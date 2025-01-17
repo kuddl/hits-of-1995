@@ -37,15 +37,15 @@ export function ImagePreloader({ onLoad }: ImagePreloaderProps) {
 
   if (progress < 100) {
     return (
-      <div className="fixed inset-0 bg-gray-950 flex items-center justify-center z-50">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950">
         <div className="text-center">
-          <div className="w-48 h-2 bg-gray-800 rounded-full overflow-hidden mb-4">
+          <div className="mb-4 h-2 w-48 overflow-hidden rounded-full bg-gray-800">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-white/70 text-sm">Loading images... {progress}%</p>
+          <p className="text-sm text-white/70">Loading images... {progress}%</p>
         </div>
       </div>
     );

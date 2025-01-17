@@ -19,30 +19,30 @@ export const MyHeader = () => {
   }, []);
 
   return (
-    <header className="text-center mb-24 relative pt-16">
-      <div className="absolute inset-x-0 top-4 flex  justify-center gap-12 animate-float flex-wrap">
+    <header className="relative mb-24 pt-16 text-center">
+      <div className="animate-float absolute inset-x-0 top-4 flex flex-wrap justify-center gap-12">
         {headerIcons.map((icon, index) => (
           <div
             key={index}
             className={`transform transition-transform duration-500 ${
-              bounceIcon === index ? "scale-125 -translate-y-2" : "scale-100"
+              bounceIcon === index ? "-translate-y-2 scale-125" : "scale-100"
             }`}
           >
             {icon}
           </div>
         ))}
       </div>
-      <h1 className="text-7xl md:text-[12rem] font-black pt-20 mb-8 leading-none">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 animate-gradient-x inline-block drop-shadow-[0_0_25px_rgba(219,39,119,0.2)]">
+      <h1 className="mb-8 pt-20 text-7xl font-black leading-none md:text-[12rem]">
+        <span className="animate-gradient-x inline-block bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(219,39,119,0.2)]">
           Hits of 1995
         </span>
       </h1>
-      <p className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-blue-500 to-pink-200 animate-gradient-x  text-xl md:text-3xl font-light tracking-wider flex-wrap md:flex-nowrap flex items-center justify-center gap-2 md:gap-6 ">
+      <p className="animate-gradient-x flex flex-wrap items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 via-blue-500 to-pink-200 bg-clip-text text-xl font-light tracking-wider text-transparent md:flex-nowrap md:gap-6 md:text-3xl">
         <span className="">Nürtingen</span>
-        <span className="text-white/30 scale-50 md:scale-90">●</span>
-        <span className=" delay-75">Hölderin Gynmasium</span>
-        <span className="text-white/30 scale-50 md:scale-90">●</span>
-        <span className=" delay-150">Abi 1995</span>
+        <span className="scale-50 text-white/30 md:scale-90">●</span>
+        <span className="delay-75">Hölderin Gynmasium</span>
+        <span className="scale-50 text-white/30 md:scale-90">●</span>
+        <span className="delay-150">Abi 1995</span>
       </p>
     </header>
   );
