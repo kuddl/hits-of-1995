@@ -20,7 +20,7 @@ export const MyHeader = () => {
 
   return (
     <header className="text-center mb-24 relative pt-16">
-      <div className="absolute inset-x-0 top-4 flex justify-center gap-12 animate-float">
+      <div className="absolute inset-x-0 top-4 flex  justify-center gap-12 animate-float flex-wrap">
         {headerIcons.map((icon, index) => (
           <div
             key={index}
@@ -32,17 +32,17 @@ export const MyHeader = () => {
           </div>
         ))}
       </div>
-      <h1 className="text-[12rem] font-black pt-20 mb-8 leading-none">
+      <h1 className="text-7xl md:text-[12rem] font-black pt-20 mb-8 leading-none">
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 animate-gradient-x inline-block drop-shadow-[0_0_25px_rgba(219,39,119,0.2)]">
           Hits of 1995
         </span>
       </h1>
-      <p className="text-3xl font-light tracking-wider text-white/90 flex items-center justify-center gap-6">
-        <span className="animate-pulse">Nürtingen</span>
-        <span className="text-white/30">●</span>
-        <span className="animate-pulse delay-75">Hölderin Gynmasium</span>
-        <span className="text-white/30">●</span>
-        <span className="animate-pulse delay-150">Abi 1995</span>
+      <p className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-blue-500 to-pink-200 animate-gradient-x  text-xl md:text-3xl font-light tracking-wider flex-wrap md:flex-nowrap flex items-center justify-center gap-2 md:gap-6 ">
+        <span className="">Nürtingen</span>
+        <span className="text-white/30 scale-50 md:scale-90">●</span>
+        <span className=" delay-75">Hölderin Gynmasium</span>
+        <span className="text-white/30 scale-50 md:scale-90">●</span>
+        <span className=" delay-150">Abi 1995</span>
       </p>
     </header>
   );
