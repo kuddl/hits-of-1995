@@ -5,6 +5,7 @@ interface Song {
   artist: string;
   title: string;
   image: string;
+  album: string;
 }
 
 interface SongCardProps {
@@ -55,6 +56,9 @@ export function SongCard({ song, votes, onVote }: SongCardProps) {
               {song.title}
             </h3>
             <p className="break-words text-cyan-200/70">{song.artist}</p>
+            <p className="break-words text-xs text-purple-200/50">
+              {song.album}
+            </p>
           </div>
           <span className="shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
             #{song.rank}
