@@ -1,5 +1,5 @@
+import { Disc3, Mic2, Music2, Radio } from "lucide-react";
 import  { useEffect, useState } from "react";
-import { Music2, Disc3, Mic2, Radio } from "lucide-react";
 
 export const MyHeader = () => {
     const headerIcons = [

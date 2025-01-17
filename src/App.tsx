@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import songData from "./data/songs.json";
-import { SongCard } from "./components/SongCard";
-import { BackgroundPattern } from "./components/BackgroundPattern";
-import { ImagePreloader } from "./components/ImagePreloader";
-import { Footer } from "./components/Footer";
-import { supabase } from "./lib/supabase";
+import { useEffect, useState } from "react";
 import { BackToTop } from "./components/BackToTop";
+import { BackgroundPattern } from "./components/BackgroundPattern";
+import { Footer } from "./components/Footer";
+import { ImagePreloader } from "./components/ImagePreloader";
 import { MyHeader } from "./components/MyHeader";
+import { SongCard } from "./components/SongCard";
+import songData from "./data/songs.json";
+import { supabase } from "./lib/supabase";
 
 function App() {
   const [votes, setVotes] = useState<Record<string, number>>(() =>
@@ -48,6 +48,8 @@ function App() {
           schema: "public",
           table: "votes",
         },
+        
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (payload: any) => {
           setVotes((prev) => ({
             ...prev,

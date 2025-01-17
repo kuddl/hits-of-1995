@@ -1,5 +1,4 @@
-import React from 'react';
-import { Youtube, Music, Radio } from 'lucide-react';
+import { Music, Radio, Youtube } from 'lucide-react';
 
 interface Song {
   rank: string;

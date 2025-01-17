@@ -19,6 +19,7 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      "sort-imports": ["error"],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
