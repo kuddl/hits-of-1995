@@ -1,1 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1050)"><rect width="1000" height="1000" fill="#ffffff"></rect><g transform="matrix(22.22222222222222,0,0,22.22222222222222,100,100)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="36" height="36"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-disc3 text-blue-400"><circle cx="12" cy="12" r="10"></circle><path d="M6 12c0-1.7.7-3.2 1.8-4.2"></path><circle cx="12" cy="12" r="2"></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg></svg></g></g><defs><clipPath id="SvgjsClipPath1050"><rect width="1000" height="1000" x="0" y="0" rx="150" ry="150"></rect></clipPath></defs></svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000">
+    <g clip-path="url(#SvgjsClipPath1050)">
+        <rect width="1000" height="1000" fill="#ffffff"></rect>
+        <g transform="matrix(22.22222222222222,0,0,22.22222222222222,100,100)">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.dev/svgjs" width="36" height="36">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-disc3 text-blue-400">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M6 12c0-1.7.7-3.2 1.8-4.2"></path>
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path>
+                </svg>
+            </svg>
+        </g>
+    </g>
+    <defs>
+        <clipPath id="SvgjsClipPath1050">
+            <rect width="1000" height="1000" x="0" y="0" rx="150" ry="150"></rect>
+        </clipPath>
+    </defs>
+</svg>

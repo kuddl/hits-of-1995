@@ -115,9 +115,9 @@ function App() {
     <div className="relative flex min-h-screen flex-col bg-gradient-to-b from-gray-950 via-blue-950 to-purple-950 text-white">
       <BackgroundPattern />
 
-      <div className="container relative z-10 mx-auto max-w-[1900px] flex-grow px-4 py-8">
+      <div className="container relative z-10 mx-auto max-w-6xl flex-grow px-4 py-8">
         <MyHeader />
-        <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className=":grid-cols-4 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {songData.songs.map((song) => (
             <SongCard
               key={song.rank}
