@@ -46,7 +46,7 @@ export function SongCard({ song, votes, onVote }: SongCardProps) {
       </div>
       <div className="p-4 relative">
         {/* Background Rank Number */}
-        <div className="absolute -right-4 -bottom-8 text-[140px] font-black text-white/[0.02] select-none pointer-events-none leading-none z-0">
+        <div className="absolute -right-4 -bottom-8 text-[140px] font-black text-white/[0.1] select-none pointer-events-none leading-none z-0">
           {song.rank}
         </div>
         

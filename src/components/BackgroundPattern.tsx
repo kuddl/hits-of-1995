@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 
 export function BackgroundPattern() {
-  const [scale, setScale] = useState(1);
-
- 
-
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none opacity-[0.15]">
       <svg 
