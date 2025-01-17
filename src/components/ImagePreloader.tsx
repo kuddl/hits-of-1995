@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import songData from '../data/songs.json';
+import React, { useEffect, useState } from "react";
+import songData from "../data/songs.json";
 
 interface ImagePreloaderProps {
   onLoad: () => void;
@@ -15,11 +15,11 @@ export function ImagePreloader({ onLoad }: ImagePreloaderProps) {
         return new Promise((resolve) => {
           const img = new Image();
           img.onload = () => {
-            setLoadedImages(prev => prev + 1);
+            setLoadedImages((prev) => prev + 1);
             resolve(null);
           };
           img.onerror = () => {
-            setLoadedImages(prev => prev + 1);
+            setLoadedImages((prev) => prev + 1);
             resolve(null);
           };
           img.src = song.image;
@@ -40,7 +40,7 @@ export function ImagePreloader({ onLoad }: ImagePreloaderProps) {
       <div className="fixed inset-0 bg-gray-950 flex items-center justify-center z-50">
         <div className="text-center">
           <div className="w-48 h-2 bg-gray-800 rounded-full overflow-hidden mb-4">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
