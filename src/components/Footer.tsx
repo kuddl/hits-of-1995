@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heart, Zap } from 'lucide-react';
 
 interface FooterProps {
@@ -27,7 +26,7 @@ export function Footer({ onResetVotes }: FooterProps) {
           >
             <Zap size={16} className="text-cyan-400" />
           </a>{' '}
-          by Tobi Sailer
+          by Tobias Sailer
         </p>
       </div>
     </footer>
