@@ -48,7 +48,7 @@ function App() {
           schema: "public",
           table: "votes",
         },
-        
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (payload: any) => {
           setVotes((prev) => ({
@@ -63,8 +63,6 @@ function App() {
       channel.unsubscribe();
     };
   }, []);
-
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,15 +107,12 @@ function App() {
     });
   };
 
-
-
   if (!imagesLoaded) {
     return <ImagePreloader onLoad={() => setImagesLoaded(true)} />;
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-blue-950 to-purple-950 text-white flex flex-col relative">
-      
       <BackgroundPattern />
 
       <div className="container mx-auto px-4 py-8 max-w-[1900px] flex-grow relative z-10">

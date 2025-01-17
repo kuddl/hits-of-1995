@@ -1,4 +1,4 @@
-import { Music, Radio, Youtube } from 'lucide-react';
+import { Music, Radio, Youtube } from "lucide-react";
 
 interface Song {
   rank: string;
@@ -19,7 +19,7 @@ export function SongCard({ song, votes, onVote }: SongCardProps) {
     return {
       youtube: `https://music.youtube.com/search?q=${searchQuery}`,
       apple: `https://music.apple.com/search?term=${searchQuery}`,
-      spotify: `https://open.spotify.com/search/${searchQuery}`
+      spotify: `https://open.spotify.com/search/${searchQuery}`,
     };
   };
 
@@ -48,10 +48,12 @@ export function SongCard({ song, votes, onVote }: SongCardProps) {
         <div className="absolute -right-4 -bottom-8 text-[140px] font-black text-white/[0.1] select-none pointer-events-none leading-none z-0">
           {song.rank}
         </div>
-        
+
         <div className="flex items-start justify-between mb-3 relative z-10">
           <div className="pr-3">
-            <h3 className="font-bold text-lg mb-1 break-words text-cyan-50">{song.title}</h3>
+            <h3 className="font-bold text-lg mb-1 break-words text-cyan-50">
+              {song.title}
+            </h3>
             <p className="text-cyan-200/70 break-words">{song.artist}</p>
           </div>
           <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 py-1 rounded-full text-sm font-bold shrink-0">
