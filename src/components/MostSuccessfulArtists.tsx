@@ -13,6 +13,7 @@ interface MostSuccessfulArtistsProps {
   onArtistClick: (artist: string) => void;
 }
 
+const SUCCESS_LIMIT_COUNT = 2;
 export const MostSuccessfulArtists = ({
   songs,
   selectedArtist,
@@ -26,8 +27,9 @@ export const MostSuccessfulArtists = ({
   });
 
   const artists: Artist[] = Object.entries(artistSongCount)
-    .filter(([, count]) => count >= 2)
-    .map(([artist, count]) => ({ artist, count }));
+    .filter(([, count]) => count >= SUCCESS_LIMIT_COUNT)
+    .map(([artist, count]) => ({ artist, count }))
+    .sort((a, b) => b.count - a.count);
 
   return (
     <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
