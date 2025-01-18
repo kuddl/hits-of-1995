@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BackToTop } from "./components/BackToTop";
 import { BackgroundPattern } from "./components/BackgroundPattern";
 import { Footer } from "./components/Footer";
-import { ImagePreloader } from "./components/ImagePreloader";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
 import { SongCard } from "./components/SongCard";
@@ -13,7 +12,6 @@ function App() {
   const [votes, setVotes] = useState<Record<string, number>>(() =>
     Object.fromEntries(songData.songs.map((song) => [song.rank, 0])),
   );
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState<string | null>(null);
 
   // Calculate the most successful artists
@@ -29,6 +27,7 @@ function App() {
   const filteredSongs = selectedArtist
     ? songData.songs.filter((song) => song.artist === selectedArtist)
     : songData.songs;
+
   useEffect(() => {
     const loadVotes = async () => {
       const { data, error } = await supabase
@@ -103,10 +102,6 @@ function App() {
     }
   };
 
-  if (!imagesLoaded) {
-    return <ImagePreloader onLoad={() => setImagesLoaded(true)} />;
-  }
-
   const handleArtistClick = (artist: string) => {
     setSelectedArtist(artist === selectedArtist ? null : artist);
   };
@@ -125,7 +120,7 @@ function App() {
           onArtistClick={handleArtistClick}
         />
 
-        <div className=":grid-cols-4 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid-cols grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filteredSongs.map((song) => (
             <SongCard
               key={song.rank}
