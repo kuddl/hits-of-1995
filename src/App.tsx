@@ -149,13 +149,21 @@ function App() {
                       : "border-white/5 bg-white/5 hover:bg-white/10"
                   }`}
                 >
-                  <span
-                    className={`font-medium ${artist === selectedArtist ? "text-cyan-200" : "text-cyan-200/70"}`}
+                  <div
+                    className={`font-medium ${
+                      artist === selectedArtist
+                        ? "text-cyan-200"
+                        : "text-cyan-200/70"
+                    }`}
                   >
-                    {artist}
-                    {artist === selectedArtist && " (Click to clear)"}
-                  </span>
-                  <span className="rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
+                    <span className="block">{artist}</span>
+                    {artist === selectedArtist && (
+                      <span className="block text-sm text-cyan-200/60">
+                        (Click to clear)
+                      </span>
+                    )}
+                  </div>
+                  <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
                     {count} songs
                   </span>
                 </div>
