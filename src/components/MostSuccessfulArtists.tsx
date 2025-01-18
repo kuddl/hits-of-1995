@@ -38,7 +38,12 @@ export const MostSuccessfulArtists = ({
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <h2 className="font-bold text-cyan-50 sm:text-2xl">
-          Künstler mit mehreren Hits
+          Künstler mit mehreren Hits{" "}
+          {!!selectedArtist && !isExpanded ? (
+            <span className="mt-4 text-sm text-cyan-200/60">
+              (Filter aktiv)
+            </span>
+          ) : null}
         </h2>
         <ChevronDown
           className={`h-6 w-6 text-cyan-50 transition-transform duration-200 ${
@@ -48,7 +53,9 @@ export const MostSuccessfulArtists = ({
       </div>
       <div
         className={`transition-all duration-200 ease-in-out ${
-          isExpanded ? "mt-4 max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded
+            ? "mt-4 max-h-[2000px] opacity-100"
+            : "pointer-events-none max-h-0 opacity-0"
         }`}
       >
         <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

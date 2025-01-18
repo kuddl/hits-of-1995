@@ -81,7 +81,7 @@ function App() {
         <MyHeader />
 
         {/* Most Successful Artists List */}
-        <div className="flex grow items-center justify-between">
+        <div className="flex grow flex-col items-center justify-between gap-4 sm:flex-row">
           <MostSuccessfulArtists
             songs={songs}
             selectedArtist={selectedArtist}
