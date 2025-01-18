@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        headline: ["Cinzel", "serif"],
-        body: ["Fauna One", "sans-serif"],
+        headline: ["Poiret One", "cursive"],
+        body: ["Montserrat", "sans-serif"],
       },
     },
   },
