@@ -23,7 +23,7 @@ function App() {
   });
 
   const successfulArtists = Object.entries(artistSongCount)
-    .filter(([, count]) => count > 2)
+    .filter(([, count]) => count >= 2)
     .map(([artist, count]) => ({ artist, count }));
 
   const filteredSongs = selectedArtist
