@@ -47,7 +47,7 @@ export const MyHeader = () => {
       <p className="mx-auto mt-12 max-w-2xl text-lg text-white/80">
         Willkommen bei unserer musikalischen Zeitreise ins Jahr 1995! Hier
         findest du die größten Hits, die uns durch unser Abiturjahr begleitet
-        haben. Klicke einfach auf die Songs, um sie anzuhören, und lass dich von
+        haben. Klicke einfach auf die Icons unter den Songs, um sie anzuhören, und lass dich von
         den Erinnerungen mitreißen. Mit dem ❤️-Button kannst du für deine
         Lieblingssongs abstimmen. Viel Spaß beim Entdecken und Erinnern!
       </p>
