@@ -131,6 +131,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
     <div className="group relative flex w-full max-w-[20rem] flex-col justify-between overflow-hidden rounded-lg border border-white/10 bg-gray-900/40 backdrop-blur-sm transition-transform duration-300 hover:scale-105 hover:transform">
       <div className="relative aspect-square overflow-hidden">
         <img
+          loading="lazy"
           src={song.image}
           alt={`${song.title} by ${song.artist}`}
           className="h-full w-full object-cover"

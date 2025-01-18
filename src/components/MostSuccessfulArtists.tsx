@@ -1,4 +1,6 @@
+import { ChevronDown } from "lucide-react";
 import type { Song } from "../types";
+import { useState } from "react";
 
 interface Artist {
   artist: string;
@@ -16,6 +18,7 @@ export const MostSuccessfulArtists = ({
   selectedArtist,
   onArtistClick,
 }: MostSuccessfulArtistsProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   // Calculate the most successful artists
   const artistSongCount: Record<string, number> = {};
   songs.forEach((song) => {
@@ -28,37 +31,53 @@ export const MostSuccessfulArtists = ({
 
   return (
     <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
-      <h2 className="mb-4 text-2xl font-bold text-cyan-50">
-        Künstler mit mehreren Hits
-      </h2>
-      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {artists.map(({ artist, count }) => (
-          <div
-            onClick={() => onArtistClick(artist)}
-            key={artist}
-            className={`flex cursor-pointer items-center justify-between rounded-md border p-3 transition-colors ${
-              artist === selectedArtist
-                ? "border-cyan-400/50 bg-white/20 shadow-lg shadow-cyan-500/20"
-                : "border-white/5 bg-white/5 hover:bg-white/10"
-            }`}
-          >
+      <div
+        className="flex cursor-pointer items-center justify-between"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <h2 className="font-bold text-cyan-50 sm:text-2xl">
+          Künstler mit mehreren Hits
+        </h2>
+        <ChevronDown
+          className={`h-6 w-6 text-cyan-50 transition-transform duration-200 ${
+            isExpanded ? "rotate-180" : "rotate-0"
+          }`}
+        />
+      </div>
+      <div
+        className={`transition-all duration-200 ease-in-out ${
+          isExpanded ? "mt-4 max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {artists.map(({ artist, count }) => (
             <div
-              className={`font-medium ${
-                artist === selectedArtist ? "text-cyan-200" : "text-cyan-200/70"
+              onClick={() => onArtistClick(artist)}
+              key={artist}
+              className={`flex cursor-pointer items-center justify-between rounded-md border p-1 transition-colors ${
+                artist === selectedArtist
+                  ? "border-cyan-400/50 bg-white/20 shadow-lg shadow-cyan-500/20"
+                  : "border-white/5 bg-white/5 hover:bg-white/10"
               }`}
             >
-              <span className="block">{artist}</span>
-              {artist === selectedArtist && (
-                <span className="block text-sm text-cyan-200/60">
-                  (Klicken zum Aufheben)
-                </span>
-              )}
+              <div
+                className={`font-medium ${
+                  artist === selectedArtist
+                    ? "text-cyan-200"
+                    : "text-cyan-200/70"
+                }`}
+              >
+                <span className="block">{artist}</span>
+              </div>
+              <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
+                {count} Hits
+              </span>
             </div>
-            <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
-              {count} Hits
-            </span>
-          </div>
-        ))}
+          ))}
+        </div>
+        <span className="mt-4 block text-sm text-cyan-200/60">
+          (Klicken zum Filtern und Aufheben)
+        </span>
       </div>
     </div>
   );
