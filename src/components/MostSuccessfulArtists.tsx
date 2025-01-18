@@ -32,7 +32,7 @@ export const MostSuccessfulArtists = ({
     .sort((a, b) => b.count - a.count);
 
   return (
-    <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
+    <div className="grow rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
       <div
         className="flex cursor-pointer items-center justify-between"
         onClick={() => setIsExpanded(!isExpanded)}
