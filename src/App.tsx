@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
 import { SongCard } from "./components/SongCard";
+import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
@@ -70,7 +71,7 @@ function App() {
   };
 
   const handleSortClick = () => {
-    setSortByVotes((prev) => !prev);
+    setSortByVotes((isSortingByVotes) => !isSortingByVotes);
   };
 
   return (
@@ -87,13 +88,11 @@ function App() {
             selectedArtist={selectedArtist}
             onArtistClick={handleArtistClick}
           />
-          <button
-            onClick={handleSortClick}
-            className="ml-4 flex gap-1 rounded-full bg-gradient-to-r from-emerald-700 to-cyan-800 px-4 py-2 text-white shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-gradient-to-r hover:from-emerald-700 hover:to-cyan-600"
-          >
-            <span className="block">Sortierung:</span>
-            <span className="block">{sortByVotes ? "💖" : "📊"}</span>
-          </button>
+
+          <SortButton
+            sortByVotes={sortByVotes}
+            handleSortClick={handleSortClick}
+          ></SortButton>
         </div>
 
         <div className="grid-cols mt-12 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
