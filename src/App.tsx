@@ -134,7 +134,7 @@ function App() {
         {successfulArtists.length > 0 && (
           <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
             <h2 className="mb-4 text-2xl font-bold text-cyan-50">
-              Artists with Multiple Hits
+              Künstler mit mehreren Hits
             </h2>
             <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {successfulArtists.map(({ artist, count }) => (
@@ -159,12 +159,12 @@ function App() {
                     <span className="block">{artist}</span>
                     {artist === selectedArtist && (
                       <span className="block text-sm text-cyan-200/60">
-                        (Click to clear)
+                        (Klicken zum Aufheben)
                       </span>
                     )}
                   </div>
                   <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
-                    {count} songs
+                    {count} Hits
                   </span>
                 </div>
               ))}

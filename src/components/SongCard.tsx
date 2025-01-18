@@ -156,7 +156,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
         <button
           onClick={() => onVote(song.rank)}
           className="absolute right-2 top-2 flex transform cursor-pointer items-center gap-1 rounded-full bg-pink-700 px-3 py-1 text-sm font-bold text-white shadow-lg transition-all duration-200 hover:scale-110 hover:bg-pink-500"
-          title="Click to vote!"
+          title="Klicke zum Abstimmen!"
         >
           <span>
             <Heart />
@@ -188,7 +188,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white/50 transition-colors hover:text-red-400"
-            title="Listen on YouTube Music"
+            title="Auf YouTube Music anhören"
           >
             <Youtube size={20} />
             Youtube Music
@@ -198,7 +198,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white/50 transition-colors hover:text-red-400"
-            title="Listen on Apple Music"
+            title="Auf Apple Music anhören"
           >
             <Music size={20} />
             Apple Music
@@ -208,7 +208,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white/50 transition-colors hover:text-red-400"
-            title="Listen on Spotify"
+            title="Auf Spotify anhören"
           >
             <Radio size={20} />
             Spotify
@@ -218,7 +218,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white/50 transition-colors hover:text-red-400"
-            title="Search on MusicBrainz"
+            title="Auf MusicBrainz ansehen"
           >
             <ArcticonsMusicbrainz width={20} height={20} />
             MusicBrainz
