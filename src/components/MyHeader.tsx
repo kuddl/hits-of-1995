@@ -40,7 +40,7 @@ export const MyHeader = () => {
       <p className="animate-gradient-x flex flex-wrap items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 via-blue-500 to-pink-200 bg-clip-text text-xl font-light tracking-wider text-transparent md:flex-nowrap md:gap-6 md:text-3xl">
         <span className="">Nürtingen</span>
         <span className="scale-50 text-white/30 md:scale-90">●</span>
-        <span className="delay-75">Hölderin Gynmasium</span>
+        <span className="delay-75">Hölderlin Gymnasium</span>
         <span className="scale-50 text-white/30 md:scale-90">●</span>
         <span className="delay-150">Abi 1995</span>
       </p>
