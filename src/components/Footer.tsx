@@ -1,4 +1,4 @@
-import { Heart, Zap, Github } from "lucide-react";
+import { Heart, Zap } from "lucide-react";
 
 export function Footer() {
   return (
