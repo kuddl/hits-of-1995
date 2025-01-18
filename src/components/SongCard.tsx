@@ -122,6 +122,7 @@ interface Song {
   title: string;
   image: string;
   album: string;
+  musicBrainzId: string;
 }
 
 interface SongCardProps {
@@ -137,7 +138,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
       youtube: `https://music.youtube.com/search?q=${searchQuery}`,
       apple: `https://music.apple.com/search?term=${searchQuery}`,
       spotify: `https://open.spotify.com/search/${searchQuery}`,
-      musicBrainz: `https://musicbrainz.org/search?query=${searchQuery}`,
+      musicBrainz: `https://musicbrainz.org/artist/${song.musicBrainzId}`,
     };
   };
 

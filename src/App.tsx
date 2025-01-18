@@ -13,9 +13,22 @@ function App() {
     Object.fromEntries(songData.songs.map((song) => [song.rank, 0])),
   );
   const [showBackToTop, setShowBackToTop] = useState(false);
-
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [selectedArtist, setSelectedArtist] = useState<string | null>(null);
 
+  // Calculate the most successful artists
+  const artistSongCount: Record<string, number> = {};
+  songData.songs.forEach((song) => {
+    artistSongCount[song.artist] = (artistSongCount[song.artist] || 0) + 1;
+  });
+
+  const successfulArtists = Object.entries(artistSongCount)
+    .filter(([, count]) => count > 2)
+    .map(([artist, count]) => ({ artist, count }));
+
+  const filteredSongs = selectedArtist
+    ? songData.songs.filter((song) => song.artist === selectedArtist)
+    : songData.songs;
   useEffect(() => {
     const loadVotes = async () => {
       const { data, error } = await supabase
@@ -48,7 +61,6 @@ function App() {
           schema: "public",
           table: "votes",
         },
-
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (payload: any) => {
           setVotes((prev) => ({
@@ -117,8 +129,43 @@ function App() {
 
       <div className="container relative z-10 mx-auto max-w-6xl flex-grow px-4 py-8">
         <MyHeader />
+
+        {/* Most Successful Artists List */}
+        {successfulArtists.length > 0 && (
+          <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
+            <h2 className="mb-4 text-2xl font-bold text-cyan-50">
+              Artists with Multiple Hits
+            </h2>
+            <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {successfulArtists.map(({ artist, count }) => (
+                <div
+                  onClick={() =>
+                    setSelectedArtist(artist === selectedArtist ? null : artist)
+                  }
+                  key={artist}
+                  className={`flex cursor-pointer items-center justify-between rounded-md border p-3 transition-colors ${
+                    artist === selectedArtist
+                      ? "border-cyan-400/50 bg-white/20 shadow-lg shadow-cyan-500/20"
+                      : "border-white/5 bg-white/5 hover:bg-white/10"
+                  }`}
+                >
+                  <span
+                    className={`font-medium ${artist === selectedArtist ? "text-cyan-200" : "text-cyan-200/70"}`}
+                  >
+                    {artist}
+                    {artist === selectedArtist && " (Click to clear)"}
+                  </span>
+                  <span className="rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
+                    {count} songs
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className=":grid-cols-4 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {songData.songs.map((song) => (
+          {filteredSongs.map((song) => (
             <SongCard
               key={song.rank}
               song={song}
