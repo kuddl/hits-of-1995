@@ -1,3 +1,3 @@
-# hits-of-1995
+# Hits-of-1995
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/kuddl/hits-of-1995)
+Simple website to have some fun with AI code generatio (thanks to Bolt.new)
