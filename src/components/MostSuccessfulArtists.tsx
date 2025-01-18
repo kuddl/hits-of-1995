@@ -1,19 +1,31 @@
+import type { Song } from "../types";
+
 interface Artist {
   artist: string;
   count: number;
 }
 
 interface MostSuccessfulArtistsProps {
-  artists: Artist[];
+  songs: Song[];
   selectedArtist: string | null;
   onArtistClick: (artist: string) => void;
 }
 
 export const MostSuccessfulArtists = ({
-  artists,
+  songs,
   selectedArtist,
   onArtistClick,
 }: MostSuccessfulArtistsProps) => {
+  // Calculate the most successful artists
+  const artistSongCount: Record<string, number> = {};
+  songs.forEach((song) => {
+    artistSongCount[song.artist] = (artistSongCount[song.artist] || 0) + 1;
+  });
+
+  const artists: Artist[] = Object.entries(artistSongCount)
+    .filter(([, count]) => count >= 2)
+    .map(([artist, count]) => ({ artist, count }));
+
   return (
     <div className="mb-12 rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
       <h2 className="mb-4 text-2xl font-bold text-cyan-50">

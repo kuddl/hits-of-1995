@@ -3,10 +3,10 @@ const path = require("path");
 const https = require("https"); // Use 'http' if the URL starts with 'http://'
 
 // Read the JSON file
-const songs = require("./src/data/songs.json").songs;
+const songs = require("../src/data/songs.json").songs;
 
 // Create a folder to save the images
-const imagesFolder = path.join(__dirname, "images");
+const imagesFolder = path.join(__dirname, "..", "images");
 if (!fs.existsSync(imagesFolder)) {
   fs.mkdirSync(imagesFolder);
 }

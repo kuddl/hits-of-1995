@@ -5,52 +5,22 @@ import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
 import { SongCard } from "./components/SongCard";
+import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
 
 function App() {
-  const [votes, setVotes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(songData.songs.map((song) => [song.rank, 0])),
-  );
+  const { songs } = songData;
   const [selectedArtist, setSelectedArtist] = useState<string | null>(null);
-
-  // Calculate the most successful artists
-  const artistSongCount: Record<string, number> = {};
-  songData.songs.forEach((song) => {
-    artistSongCount[song.artist] = (artistSongCount[song.artist] || 0) + 1;
-  });
-
-  const successfulArtists = Object.entries(artistSongCount)
-    .filter(([, count]) => count >= 2)
-    .map(([artist, count]) => ({ artist, count }));
+  const [votes, setVotes] = useState<Record<string, number>>(() =>
+    Object.fromEntries(songs.map((song) => [song.rank, 0])),
+  );
 
   const filteredSongs = selectedArtist
-    ? songData.songs.filter((song) => song.artist === selectedArtist)
-    : songData.songs;
+    ? songs.filter((song) => song.artist === selectedArtist)
+    : songs;
 
   useEffect(() => {
-    const loadVotes = async () => {
-      const { data, error } = await supabase
-        .from("votes")
-        .select("song_rank, count");
-
-      if (error) {
-        console.error("Error loading votes:", error);
-        return;
-      }
-
-      const voteMap = Object.fromEntries(
-        data.map((vote) => [vote.song_rank, vote.count]),
-      );
-
-      setVotes((prev) => ({
-        ...prev,
-        ...voteMap,
-      }));
-    };
-
-    loadVotes();
-
     const channel = supabase
       .channel("votes")
       .on(
@@ -68,7 +38,14 @@ function App() {
           }));
         },
       )
-      .subscribe();
+      .subscribe(async () => {
+        const voteMap = await loadVotes();
+        setVotes((prev) => ({
+          ...prev,
+          ...voteMap,
+        }));
+        console.log("Subscription received");
+      });
 
     return () => {
       channel.unsubscribe();
@@ -76,30 +53,10 @@ function App() {
   }, []);
 
   const handleVote = async (rank: string) => {
-    setVotes((prev) => ({
-      ...prev,
-      [rank]: (prev[rank] || 0) + 1,
-    }));
-
-    try {
-      const { error } = await supabase.rpc("increment_vote", {
-        song_rank_param: rank,
-      });
-
-      if (error) {
-        console.error("Error incrementing vote:", error);
-        setVotes((prev) => ({
-          ...prev,
-          [rank]: (prev[rank] || 1) - 1,
-        }));
-      }
-    } catch (error) {
-      console.error("Error handling vote:", error);
-      setVotes((prev) => ({
-        ...prev,
-        [rank]: (prev[rank] || 1) - 1,
-      }));
-    }
+    const { error } = await supabase.rpc("increment_vote", {
+      song_rank_param: rank,
+    });
+    if (error) return console.error("Error handling vote:", error);
   };
 
   const handleArtistClick = (artist: string) => {
@@ -115,7 +72,7 @@ function App() {
 
         {/* Most Successful Artists List */}
         <MostSuccessfulArtists
-          artists={successfulArtists}
+          songs={songs}
           selectedArtist={selectedArtist}
           onArtistClick={handleArtistClick}
         />

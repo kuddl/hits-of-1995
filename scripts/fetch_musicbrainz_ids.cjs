@@ -2,9 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
-const songsFilePath = path.join(__dirname, "src", "data", "songs.json");
+const songsFilePath = path.join(__dirname, "..", "src", "data", "songs.json");
 const outputFilePath = path.join(
   __dirname,
+  "..",
   "src",
   "data",
   "songs_with_ids.json",

@@ -1,5 +1,7 @@
 import { Heart, Music, Radio, Youtube } from "lucide-react";
 import { SVGProps } from "react";
+import type { Song } from "../types";
+import { getMusicLinks } from "../utils/helpers";
 
 const ArcticonsMusicbrainz = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -116,15 +118,6 @@ const ArcticonsMusicbrainz = (props: SVGProps<SVGSVGElement>) => {
   );
 };
 
-interface Song {
-  rank: string;
-  artist: string;
-  title: string;
-  image: string;
-  album: string;
-  musicBrainzId: string;
-}
-
 interface SongCardProps {
   song: Song;
   votes: number;
@@ -132,16 +125,6 @@ interface SongCardProps {
 }
 
 export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
-  const getMusicLinks = (song: Song) => {
-    const searchQuery = encodeURIComponent(`${song.artist} ${song.title}`);
-    return {
-      youtube: `https://music.youtube.com/search?q=${searchQuery}`,
-      apple: `https://music.apple.com/search?term=${searchQuery}`,
-      spotify: `https://open.spotify.com/search/${searchQuery}`,
-      musicBrainz: `https://musicbrainz.org/artist/${song.musicBrainzId}`,
-    };
-  };
-
   const links = getMusicLinks(song);
 
   return (
