@@ -11,13 +11,6 @@ import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
 
-const playlist = {
-  youtube:
-    "https://music.youtube.com/playlist?list=PLekD0PzqZ9kZd62W232qNdoGpg2fG_79_&si=1U6uKrjVABLucn9o",
-  spotify:
-    "https://open.spotify.com/playlist/57zV9M3U7iBRf81uIeQSYo?si=YqDs7XGuRVOGMJqojisdOA",
-};
-
 function App() {
   const { songs } = songData;
   const [selectedArtist, setSelectedArtist] = useState<string | null>(null);

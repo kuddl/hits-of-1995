@@ -32,19 +32,19 @@ export const MostSuccessfulArtists = ({
     .sort((a, b) => b.count - a.count);
 
   return (
-    <div className="grow rounded-lg border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm">
+    <div className="grow rounded-lg border border-white/10 bg-gray-900/40 p-2 backdrop-blur-sm">
       <div
         className="flex cursor-pointer items-center justify-between"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h2 className="font-bold text-cyan-50 sm:text-2xl">
+        <h3 className="text-cyan-50 sm:text-xl">
           Künstler mit mehreren Hits{" "}
           {!!selectedArtist && !isExpanded ? (
             <span className="mt-4 text-sm text-cyan-200/60">
               (Filter aktiv)
             </span>
           ) : null}
-        </h2>
+        </h3>
         <ChevronDown
           className={`h-6 w-6 text-cyan-50 transition-transform duration-200 ${
             isExpanded ? "rotate-180" : "rotate-0"
@@ -63,7 +63,7 @@ export const MostSuccessfulArtists = ({
             <div
               onClick={() => onArtistClick(artist)}
               key={artist}
-              className={`flex cursor-pointer items-center justify-between rounded-md border p-1 transition-colors ${
+              className={`flex cursor-pointer items-center justify-between rounded-md border p-1 text-sm transition-colors ${
                 artist === selectedArtist
                   ? "border-cyan-400/50 bg-white/20 shadow-lg shadow-cyan-500/20"
                   : "border-white/5 bg-white/5 hover:bg-white/10"
@@ -78,7 +78,7 @@ export const MostSuccessfulArtists = ({
               >
                 <span className="block">{artist}</span>
               </div>
-              <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm font-bold text-white">
+              <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-2 py-1 text-sm text-white">
                 {count} Hits
               </span>
             </div>

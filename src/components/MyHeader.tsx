@@ -19,7 +19,7 @@ export const MyHeader = () => {
   }, []);
 
   return (
-    <header className="relative mb-24 pt-16 text-center">
+    <header className="relative mb-8 pt-16 text-center">
       <div className="animate-float absolute inset-x-0 top-4 flex flex-wrap justify-center gap-12">
         {headerIcons.map((icon, index) => (
           <div
