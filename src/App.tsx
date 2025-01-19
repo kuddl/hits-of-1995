@@ -4,12 +4,12 @@ import { BackgroundPattern } from "./components/BackgroundPattern";
 import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
-import { Search } from "lucide-react";
 import { SongCard } from "./components/SongCard";
 import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
+import { FilterByTextField } from "./components/FilterByTextField";
 
 function App() {
   const { songs } = songData;
@@ -97,25 +97,11 @@ function App() {
         <MyHeader />
 
         {/* Search Field */}
-        <div className="mb-4 flex justify-center">
-          <div className="relative w-full max-w-md">
-            <input
-              type="text"
-              placeholder="Search by song, artist, or album"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-md border border-gray-300 bg-gray-800 px-4 py-2 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400" />
-            {/* only render, when filtered */}
-            {searchTerm && (
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-sm text-gray-400">
-                {filteredSongs.length}{" "}
-                {filteredSongs.length === 1 ? "Hit" : "Hits"} gefunden
-              </span>
-            )}
-          </div>
-        </div>
+        <FilterByTextField
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          filteredSongs={filteredSongs}
+        />
 
         {/* Most Successful Artists List */}
         <div className="flex grow flex-col items-center justify-between gap-4 md:flex-row">
