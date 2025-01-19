@@ -12,7 +12,7 @@ export const FilterByTextField = (props: {
       <div className="relative w-full max-w-md">
         <input
           type="text"
-          placeholder="Search by song, artist, or album"
+          placeholder="... suchen"
           value={props.searchTerm}
           onChange={(e) => props.setSearchTerm(e.target.value)}
           className="w-full rounded-md border border-gray-300 bg-gray-800 px-4 py-2 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"

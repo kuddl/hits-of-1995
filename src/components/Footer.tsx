@@ -21,7 +21,7 @@ export function Footer() {
             </a>
           </span>
           <span className="flex w-full items-center gap-1 text-center sm:w-auto sm:justify-center">
-            von Tobias Sailer
+            von Tobias und Magdalena Sailer
             <a
               href="https://github.com/kuddl/hits-of-1995"
               target="_blank"

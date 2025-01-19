@@ -166,7 +166,7 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
           {song.rank}
         </div>
 
-        <div className="relative z-10 flex flex-col justify-center gap-4 border-t border-white/5 pt-2">
+        <div className="relative z-10 flex flex-row justify-center gap-4 border-t border-white/5 pt-2">
           <a
             href={links.youtube}
             target="_blank"
@@ -175,7 +175,6 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             title="Auf YouTube Music anhören"
           >
             <Youtube size={20} />
-            Youtube Music
           </a>
           <a
             href={links.apple}
@@ -185,7 +184,6 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             title="Auf Apple Music anhören"
           >
             <Music size={20} />
-            Apple Music
           </a>
           <a
             href={links.spotify}
@@ -195,7 +193,6 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             title="Auf Spotify anhören"
           >
             <Radio size={20} />
-            Spotify
           </a>
           <a
             href={links.musicBrainz}
@@ -205,7 +202,6 @@ export const SongCard = ({ song, votes, onVote }: SongCardProps) => {
             title="Auf MusicBrainz ansehen"
           >
             <ArcticonsMusicbrainz width={20} height={20} />
-            MusicBrainz
           </a>
         </div>
       </div>

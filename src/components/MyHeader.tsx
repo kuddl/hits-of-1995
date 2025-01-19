@@ -1,4 +1,4 @@
-import { Disc3, Mic2, Music2, Radio } from "lucide-react";
+import { Disc3, Heart, Mic2, Music2, Radio } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const MyHeader = () => {
@@ -45,11 +45,27 @@ export const MyHeader = () => {
         <span className="delay-150">Abi 1995</span>
       </p>
       <p className="mx-auto mt-12 max-w-2xl text-lg text-white/80">
-        Willkommen bei einer musikalischen Zeitreise ins Jahr 1995! Hier findest
-        du die größten Hits, die uns durch unser Abiturjahr begleitet haben.
+        Willkommen bei einer musikalischen Zeitreise ins Jahr 1995!
+      </p>
+      <p className="mx-auto mt-2 max-w-2xl text-lg text-white/80">
+        Hier findest du die Hits, die uns durch unser Abiturjahr begleitet
+        haben.
+        <a
+          target="_blank"
+          href="https://www.offiziellecharts.de/charts/single-jahr/for-date-1995"
+          className="block text-xs underline"
+        >
+          Quelle: offiziellecharts.de
+        </a>
+      </p>
+      <p className="mx-auto mt-2 max-w-2xl text-lg text-white/80">
         Klicke einfach auf die Icons unter den Songs, um sie anzuhören, und lass
-        dich von den Erinnerungen mitreißen. Mit dem ❤️-Button kannst du für
-        deine Lieblingssongs abstimmen. Viel Spaß beim Entdecken und Erinnern!
+        dich von den Erinnerungen mitreißen. Mit dem{" "}
+        <Heart className="inline text-pink-700" />
+        -Button kannst du für deine Lieblingssongs abstimmen.
+      </p>
+      <p className="mx-auto mt-2 max-w-2xl text-lg text-white/80">
+        Viel Spaß beim Entdecken und Erinnern!
       </p>
     </header>
   );
