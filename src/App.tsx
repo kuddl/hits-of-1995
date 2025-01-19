@@ -16,7 +16,6 @@ function App() {
   const [votes, setVotes] = useState<Record<string, number>>(() =>
     Object.fromEntries(songs.map((song) => [song.rank, 0])),
   );
-  console.log(`💡 ~ file: App.tsx:16 ~ votes:`, votes);
   const [sortByVotes, setSortByVotes] = useState(false);
 
   const filteredSongs = selectedArtist
@@ -51,7 +50,7 @@ function App() {
           ...prev,
           ...voteMap,
         }));
-        console.log("Subscription received");
+        s;
       });
 
     return () => {
