@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BackToTop } from "./components/BackToTop";
 import { BackgroundPattern } from "./components/BackgroundPattern";
+import { FilterByTextField } from "./components/FilterByTextField";
 import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
@@ -9,7 +10,6 @@ import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
-import { FilterByTextField } from "./components/FilterByTextField";
 
 function App() {
   const { songs } = songData;
@@ -66,7 +66,6 @@ function App() {
           ...prev,
           ...voteMap,
         }));
-        s;
       });
 
     return () => {
