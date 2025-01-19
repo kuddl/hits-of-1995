@@ -8,6 +8,7 @@ export function Footer() {
           <span className="flex w-full items-center gap-1 text-center sm:w-auto sm:justify-center">
             Erstellt mit
             <Heart size={16} className="fill-current text-red-500" />
+            <span className="sr-only">Liebe</span>
             und
             <a
               href="https://bolt.new"
@@ -15,6 +16,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center transition-colors hover:text-cyan-400"
             >
+              <span className="sr-only">Bolt.new</span>
               <Zap size={16} className="text-cyan-400" />
             </a>
           </span>
@@ -26,6 +28,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="ml-2 inline-flex items-center transition-colors hover:text-cyan-400"
             >
+              <span className="sr-only">My Github</span>
               <svg
                 role="img"
                 viewBox="0 0 24 24"
