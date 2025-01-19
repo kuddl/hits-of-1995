@@ -14,12 +14,19 @@ import { supabase } from "./lib/supabase";
 function App() {
   const { songs } = songData;
   const [selectedArtist, setSelectedArtist] = useState<string | null>(null);
-  const [votes, setVotes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(songs.map((song) => [song.rank, 0])),
-  );
   const [sortByVotes, setSortByVotes] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [votes, setVotes] = useState<Record<string, number>>(() => {
+    return songs.reduce(
+      (acc, song) => {
+        acc[song.rank] = 0;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
+  });
 
+  // Filter songs by search term and selected artist
   const filteredSongs = selectedArtist
     ? songs.filter((song) => song.artist === selectedArtist)
     : songs.filter(
@@ -30,6 +37,7 @@ function App() {
           song.album.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
+  // Sort songs by votes
   const sortedSongs = sortByVotes
     ? [...filteredSongs].sort((a, b) => votes[b.rank] - votes[a.rank])
     : filteredSongs;
