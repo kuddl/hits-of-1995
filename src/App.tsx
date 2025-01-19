@@ -4,6 +4,7 @@ import { BackgroundPattern } from "./components/BackgroundPattern";
 import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
+import { Search } from "lucide-react";
 import { SongCard } from "./components/SongCard";
 import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
@@ -17,10 +18,17 @@ function App() {
     Object.fromEntries(songs.map((song) => [song.rank, 0])),
   );
   const [sortByVotes, setSortByVotes] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredSongs = selectedArtist
     ? songs.filter((song) => song.artist === selectedArtist)
-    : songs;
+    : songs.filter(
+        (song) =>
+          searchTerm.length < 2 ||
+          song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          song.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          song.album.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
 
   const sortedSongs = sortByVotes
     ? [...filteredSongs].sort((a, b) => votes[b.rank] - votes[a.rank])
@@ -80,8 +88,29 @@ function App() {
       <div className="container relative z-10 mx-auto max-w-6xl flex-grow px-4 py-8">
         <MyHeader />
 
+        {/* Search Field */}
+        <div className="mb-4 flex justify-center">
+          <div className="relative w-full max-w-md">
+            <input
+              type="text"
+              placeholder="Search by song, artist, or album"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full rounded-md border border-gray-300 bg-gray-800 px-4 py-2 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400" />
+            {/* only render, when filtered */}
+            {searchTerm && (
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 transform text-sm text-gray-400">
+                {filteredSongs.length}{" "}
+                {filteredSongs.length === 1 ? "Hit" : "Hits"} gefunden
+              </span>
+            )}
+          </div>
+        </div>
+
         {/* Most Successful Artists List */}
-        <div className="flex grow flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex grow flex-col items-center justify-between gap-4 md:flex-row">
           <MostSuccessfulArtists
             songs={songs}
             selectedArtist={selectedArtist}
@@ -94,16 +123,22 @@ function App() {
           ></SortButton>
         </div>
 
-        <div className="grid-cols mt-12 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {sortedSongs.map((song) => (
-            <SongCard
-              key={song.rank}
-              song={song}
-              votes={votes[song.rank]}
-              onVote={handleVote}
-            />
-          ))}
-        </div>
+        {filteredSongs.length === 0 ? (
+          <div className="mt-12 text-center text-2xl text-gray-400">
+            Keine Hits gefunden.
+          </div>
+        ) : (
+          <div className="grid-cols mt-12 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {sortedSongs.map((song) => (
+              <SongCard
+                key={song.rank}
+                song={song}
+                votes={votes[song.rank]}
+                onVote={handleVote}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <BackToTop />
