@@ -10,6 +10,14 @@ import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
+
+const tableName =
+  process.env.NODE_ENV === "development" ? "votes_local" : "votes";
+const incrVote =
+  process.env.NODE_ENV === "development"
+    ? "increment_vote_local"
+    : "increment_vote";
+
 const playlist = {
   youtube:
     "https://music.youtube.com/playlist?list=PLekD0PzqZ9kZd62W232qNdoGpg2fG_79_&si=1U6uKrjVABLucn9o",
@@ -50,13 +58,13 @@ function App() {
 
   useEffect(() => {
     const channel = supabase
-      .channel("votes")
+      .channel(tableName)
       .on(
         "postgres_changes",
         {
           event: "*",
           schema: "public",
-          table: "votes",
+          table: tableName,
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (payload: any) => {
@@ -80,7 +88,7 @@ function App() {
   }, []);
 
   const handleVote = async (rank: string) => {
-    const { error } = await supabase.rpc("increment_vote", {
+    const { error } = await supabase.rpc(incrVote, {
       song_rank_param: rank,
     });
     if (error) return console.error("Error handling vote:", error);

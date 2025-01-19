@@ -1,8 +1,11 @@
 import { supabase } from "../lib/supabase";
 
+const tableName =
+  process.env.NODE_ENV === "development" ? "votes_local" : "votes";
+
 export const loadVotes = async () => {
   const { data, error } = await supabase
-    .from("votes")
+    .from(tableName)
     .select("song_rank, count");
   if (error) return console.error("Error loading votes:", error);
 
