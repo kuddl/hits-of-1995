@@ -10,6 +10,7 @@ import { SortButton } from "./components/SortButton";
 import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
 import { supabase } from "./lib/supabase";
+import { PlaylistButtons } from "./components/PlaylistButtons";
 
 function App() {
   const { songs } = songData;
@@ -95,25 +96,32 @@ function App() {
       <div className="container relative z-10 mx-auto max-w-6xl flex-grow px-4 py-8">
         <MyHeader />
 
-        {/* Search Field */}
-        <FilterByTextField
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          filteredSongs={filteredSongs}
-        />
+        <div className="flex grow flex-wrap items-center gap-4 text-balance">
+          {/* Search Field */}
+          <FilterByTextField
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            filteredSongs={filteredSongs}
+          />
+          <div className="flex shrink justify-end gap-4">
+            {/* Sort Buttons */}
+            <SortButton
+              sortByVotes={sortByVotes}
+              handleSortClick={handleSortClick}
+            ></SortButton>
 
-        {/* Most Successful Artists List */}
-        <div className="flex grow flex-col items-center justify-between gap-4 md:flex-row">
+            {/* Playlist Buttons */}
+            <PlaylistButtons />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          {/* Most Successful Artists List */}
           <MostSuccessfulArtists
             songs={songs}
             selectedArtist={selectedArtist}
             onArtistClick={handleArtistClick}
           />
-
-          <SortButton
-            sortByVotes={sortByVotes}
-            handleSortClick={handleSortClick}
-          ></SortButton>
         </div>
 
         {filteredSongs.length === 0 ? (

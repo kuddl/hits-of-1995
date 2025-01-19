@@ -32,19 +32,19 @@ export const MostSuccessfulArtists = ({
     .sort((a, b) => b.count - a.count);
 
   return (
-    <div className="grow rounded-lg border border-white/10 bg-gray-900/40 p-2 backdrop-blur-sm">
+    <div className="rounded-md border border-gray-300 bg-gray-800 p-4 py-2 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
       <div
         className="flex cursor-pointer items-center justify-between"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h3 className="text-cyan-50 sm:text-xl">
+        <p className="sm:text-l text-cyan-50">
           Künstler mit mehreren Hits{" "}
           {!!selectedArtist && !isExpanded ? (
             <span className="mt-4 text-sm text-cyan-200/60">
               (Filter aktiv)
             </span>
           ) : null}
-        </h3>
+        </p>
         <ChevronDown
           className={`h-6 w-6 text-cyan-50 transition-transform duration-200 ${
             isExpanded ? "rotate-180" : "rotate-0"
