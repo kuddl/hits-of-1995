@@ -1,3 +1,4 @@
+import { loadVotes, updateVote } from "./utils/vote_functions";
 import { useEffect, useState } from "react";
 import { BackToTop } from "./components/BackToTop";
 import { BackgroundPattern } from "./components/BackgroundPattern";
@@ -5,12 +6,10 @@ import { FilterByTextField } from "./components/FilterByTextField";
 import { Footer } from "./components/Footer";
 import { MostSuccessfulArtists } from "./components/MostSuccessfulArtists";
 import { MyHeader } from "./components/MyHeader";
+import { PlaylistButtons } from "./components/PlaylistButtons";
 import { SongCard } from "./components/SongCard";
 import { SortButton } from "./components/SortButton";
-import { loadVotes } from "./utils/loadVotes";
 import songData from "./data/songs.json";
-import { supabase } from "./lib/supabase";
-import { PlaylistButtons } from "./components/PlaylistButtons";
 
 function App() {
   const { songs } = songData;
@@ -31,12 +30,12 @@ function App() {
   const filteredSongs = selectedArtist
     ? songs.filter((song) => song.artist === selectedArtist)
     : songs.filter(
-        (song) =>
-          searchTerm.length < 2 ||
-          song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          song.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          song.album.toLowerCase().includes(searchTerm.toLowerCase()),
-      );
+      (song) =>
+        searchTerm.length < 2 ||
+        song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        song.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        song.album.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
 
   // Sort songs by votes
   const sortedSongs = sortByVotes
@@ -44,41 +43,22 @@ function App() {
     : filteredSongs;
 
   useEffect(() => {
-    const channel = supabase
-      .channel("votes")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "votes",
-        },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (payload: any) => {
-          setVotes((prev) => ({
-            ...prev,
-            [payload.new.song_rank]: payload.new.count,
-          }));
-        },
-      )
-      .subscribe(async () => {
-        const voteMap = await loadVotes();
-        setVotes((prev) => ({
-          ...prev,
-          ...voteMap,
-        }));
-      });
-
-    return () => {
-      channel.unsubscribe();
-    };
+    const initVoteData = async () => {
+      const votes = await loadVotes();
+      setVotes((prev) => ({
+        ...prev,
+        ...votes,
+      }));
+    }
+    initVoteData();
   }, []);
 
   const handleVote = async (rank: string) => {
-    const { error } = await supabase.rpc("increment_vote", {
-      song_rank_param: rank,
-    });
-    if (error) return console.error("Error handling vote:", error);
+    const index = songs.findIndex((song) => song.rank === rank);
+    if (index === -1) return;
+    const newVotes = { ...votes, [rank]: votes[rank] + 1 };
+    setVotes(newVotes);
+    await updateVote(rank);
   };
 
   const handleArtistClick = (artist: string) => {

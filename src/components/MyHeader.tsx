@@ -2,6 +2,7 @@ import { Disc3, Heart, Mic2, Music2, Radio } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const MyHeader = () => {
+
   const headerIcons = [
     <Music2 key="music" size={36} className="text-pink-400" />,
     <Disc3 key="disc" size={36} className="text-blue-400" />,
@@ -24,9 +25,8 @@ export const MyHeader = () => {
         {headerIcons.map((icon, index) => (
           <div
             key={index}
-            className={`transform transition-transform duration-500 ${
-              bounceIcon === index ? "-translate-y-2 scale-125" : "scale-100"
-            }`}
+            className={`transform transition-transform duration-500 ${bounceIcon === index ? "-translate-y-2 scale-125" : "scale-100"
+              }`}
           >
             {icon}
           </div>
@@ -67,6 +67,7 @@ export const MyHeader = () => {
       <p className="mx-auto mt-2 max-w-2xl text-lg text-white/80">
         Viel Spaß beim Entdecken und Erinnern!
       </p>
+     
     </header>
   );
 };
