@@ -22,7 +22,7 @@ export const MyHeader = () => {
   return (
     <header className="relative mb-8 pt-16 text-center">
       <div className="flex items-center justify-between">
-        <div className="animate-float  left-4 top-4 flex flex-wrap gap-8  items-center justify-center w-full">
+        <div className="animate-float  left-4 top-4 flex flex-wrap gap-8  items-center justify-center ">
           {headerIcons.map((icon, index) => (
             <div
               key={index}
