@@ -1,4 +1,4 @@
-import { Disc3, Heart, MapPlus, MapPlusIcon, Mic2, Music2, Radio } from "lucide-react";
+import { Disc3, Heart, MapPlusIcon, Mic2, Music2, Radio } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const MyHeader = () => {
