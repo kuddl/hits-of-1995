@@ -3,6 +3,8 @@
   command = "npm run build"
   functions = "netlify/functions"
   publish = "dist"
+[build.environment]
+  NODE_VERSION = "24.18.0"
 [dev]
   framework = "vite"
   command = "npm run dev" # Command to start your dev server
